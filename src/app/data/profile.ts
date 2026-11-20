@@ -42,7 +42,7 @@ export const PROFILE: Profile = {
   firstName: 'Hicham',
   lastName: 'BOURRO',
   title: 'Référent Technique · Software Engineer Lead',
-  status: 'Tech Lead · Intelcia ITS — client SFR',
+  status: 'Tech Lead · Intelcia Tech — client SFR',
   pitch:
     'Tech Lead Java / Spring avec plus de 10 ans d’expérience dans la conception, le développement et la maintenance d’applications critiques (télécoms, transport, banque). Encadrement d’équipes, revue de code, bonnes pratiques Craftsmanship et DevOps.',
   location: 'Casablanca Ain Sebaa – 20250 – Maroc',
@@ -97,7 +97,7 @@ export const EXPERIENCES: Experience[] = [
   {
     id: 'intelcia-2025',
     role: 'Tech Lead',
-    company: 'Intelcia ITS',
+    company: 'Intelcia Tech',
     client: 'SFR',
     period: 'Déc. 2025 – Aujourd’hui',
     current: true,
@@ -130,7 +130,7 @@ export const EXPERIENCES: Experience[] = [
   {
     id: 'intelcia-2024',
     role: 'Tech Lead',
-    company: 'Intelcia ITS',
+    company: 'Intelcia Tech',
     client: 'SFR',
     period: 'Août 2024 – Juil. 2025',
     bullets: [

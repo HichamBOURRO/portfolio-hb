@@ -113,7 +113,7 @@ export const EN: Content = {
   profile: {
     ...PROFILE,
     title: 'Technical Lead · Software Engineer Lead',
-    status: 'Tech Lead · Intelcia ITS — client: SFR',
+    status: 'Tech Lead · Intelcia Tech — client: SFR',
     pitch:
       'Java / Spring Tech Lead with over 10 years of experience designing, building and maintaining critical applications (telecom, transport, banking). Team leadership, code review, Craftsmanship and DevOps best practices.',
     location: 'Casablanca Ain Sebaa – 20250 – Morocco',
