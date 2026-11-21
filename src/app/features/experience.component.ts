@@ -26,7 +26,6 @@ import { RevealDirective } from '../shared/reveal.directive';
           <div class="terminal gitlog__term">
             <div class="terminal__bar">
               <span></span><span></span><span></span>
-              <em class="mono">~/parcours — git</em>
             </div>
 
             <div class="gitlog__tabs mono" role="tablist" [attr.aria-label]="c().ui.journeyTabsAria">
@@ -48,16 +47,6 @@ import { RevealDirective } from '../shared/reveal.directive';
                     <span class="gitlog__head">HEAD</span>
                   }
                 </button>
-              }
-            </div>
-
-            <div class="terminal__body mono gitlog__cmd" aria-hidden="true">
-              @for (xp of [active()]; track xp.id) {
-                <p>
-                  <span class="accent">hicham&#64;lead</span>:~$
-                  <span class="gitlog__typed" [style.--chars]="('git checkout ' + xp.id).length">git checkout {{ xp.id }}</span>
-                </p>
-                <p class="gitlog__out">Switched to branch '{{ xp.id }}'</p>
               }
             </div>
           </div>

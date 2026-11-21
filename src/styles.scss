@@ -596,7 +596,6 @@ button {
     flex-wrap: wrap;
     gap: 6px;
     padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
   }
 
   &__tab {
@@ -649,29 +648,8 @@ button {
     letter-spacing: 0.04em;
   }
 
-  &__cmd {
-    gap: 4px;
-    padding: 16px 20px 18px;
-  }
-
-  &__typed {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    vertical-align: bottom;
-    border-right: 2px solid var(--accent);
-    animation:
-      gitlog-type 0.45s steps(var(--chars)) backwards,
-      gitlog-caret 0.9s steps(1) 0.45s 2 both;
-  }
-
-  &__out {
-    color: var(--muted);
-    animation: gitlog-fade 0.25s ease 0.45s both;
-  }
-
   &__card {
-    animation: gitlog-fade 0.35s ease 0.2s both;
+    animation: gitlog-fade 0.35s ease both;
 
     h3 {
       font-size: 1.2rem;
@@ -811,24 +789,6 @@ button {
   from {
     opacity: 0;
     transform: translateX(-48px);
-  }
-}
-
-@keyframes gitlog-type {
-  from {
-    width: 0;
-  }
-  to {
-    width: calc(var(--chars) * 1ch);
-  }
-}
-
-@keyframes gitlog-caret {
-  50% {
-    border-color: transparent;
-  }
-  100% {
-    border-color: transparent;
   }
 }
 
@@ -1076,8 +1036,6 @@ button {
   }
 
   .caret,
-  .gitlog__typed,
-  .gitlog__out,
   .gitlog__card,
   .phases__slide {
     animation: none;
