@@ -129,7 +129,7 @@ export const EN: Content = {
     { key: 'role', value: 'Technical Lead · Tech Lead' },
     { key: 'stack', value: '[Java, Spring Boot, Angular, Kubernetes]' },
     { key: 'sectors', value: 'telecom · transport · banking' },
-    { key: 'methods', value: 'SCRUM · PMP · ITIL' },
+    { key: 'methods', value: 'SCRUM · SAFe · PMP' },
     { key: 'base', value: 'Casablanca, Morocco' },
   ],
   stats: [

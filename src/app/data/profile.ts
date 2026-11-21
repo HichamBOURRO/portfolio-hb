@@ -57,14 +57,14 @@ export const PROFILE: Profile = {
     school: 'ESG Maroc, Casablanca',
     period: '2007 – 2011',
   },
-  methods: ['SCRUM', 'PMP', 'ITIL'],
+  methods: ['SCRUM', 'SAFe', 'PMP'],
 };
 
 export const TERMINAL: { key: string; value: string }[] = [
   { key: 'rôle', value: 'Référent Technique · Tech Lead' },
   { key: 'stack', value: '[Java, Spring Boot, Angular, Kubernetes]' },
   { key: 'secteurs', value: 'télécoms · transport · banque' },
-  { key: 'méthodes', value: 'SCRUM · PMP · ITIL' },
+  { key: 'méthodes', value: 'SCRUM · SAFe · PMP' },
   { key: 'base', value: 'Casablanca, Maroc' },
 ];
 
@@ -246,7 +246,7 @@ export const SKILLS: SkillCategory[] = [
   {
     id: 'jee',
     label: 'Java / JEE',
-    items: ['Spring MVC', 'Spring Boot', 'Spring Security', 'Spring Batch', 'Hibernate', 'JPA', 'JDBC', 'Web Services', 'Struts', 'JSP', 'JavaFX', 'JUnit'],
+    items: ['Spring MVC', 'Spring Boot', 'Spring Security', 'Spring Batch', 'Camunda', 'Hibernate', 'JPA', 'JDBC', 'Web Services', 'Struts', 'JSP', 'JavaFX', 'JUnit'],
   },
   { id: 'web', label: 'Web', items: ['Angular', 'ReactJS', 'HTML', 'CSS', 'JavaScript', 'jQuery', 'ASP.NET'] },
   { id: 'db', label: 'Bases de données', items: ['Oracle', 'MySQL', 'SQL Server', 'PostgreSQL', 'MongoDB'] },
