@@ -9,6 +9,15 @@ export interface StackGroup {
   items: string[];
 }
 
+export interface SubPhase {
+  /** Role held during this phase. */
+  title: string;
+  client?: string;
+  /** Context shown instead of a client, e.g. internal projects. */
+  scope?: string;
+  bullets: Bullet[];
+}
+
 export interface Experience {
   id: string;
   role: string;
@@ -17,6 +26,8 @@ export interface Experience {
   period: string;
   current?: boolean;
   bullets: Bullet[];
+  /** Optional sub-phases shown under the main bullets (e.g. a past phase, internal projects). */
+  subs?: SubPhase[];
   stack: StackGroup[];
 }
 
@@ -51,6 +62,8 @@ export const PROFILE: Profile = {
   phone: '+212 600-591-701',
   phoneHref: '+212600591701',
   cv: 'cv-hicham-bourro.pdf',
+  linkedin: 'https://www.linkedin.com/in/hicham-bourro/',
+  github: 'https://github.com/HichamBOURRO/',
   education: {
     degree: 'Master 2',
     field: 'Méthodes Informatiques Appliquées à la Gestion des Entreprises',
@@ -95,11 +108,11 @@ export const PRINCIPLES: Principle[] = [
 
 export const EXPERIENCES: Experience[] = [
   {
-    id: 'intelcia-2025',
+    id: 'intelcia',
     role: 'Tech Lead',
     company: 'Intelcia Tech',
     client: 'SFR',
-    period: 'Déc. 2025 – Aujourd’hui',
+    period: 'Août 2024 – Aujourd’hui',
     current: true,
     bullets: [
       { text: 'Maintenance évolutive et corrective d’un système d’information FTTH critique, composé de plusieurs applications.' },
@@ -118,35 +131,61 @@ export const EXPERIENCES: Experience[] = [
       { text: 'Étude de portabilité applicative.' },
       { text: 'Revue de code, enrichissement des logs et de l’observabilité, versionnement des correctifs à chaud.' },
     ],
+    subs: [
+      {
+        title: 'Tech Lead transverse',
+        client: 'SFR',
+        bullets: [
+          { text: 'Conduite d’assessments DevOps pour toutes les activités DOOR, en intégrant les bonnes pratiques sur GitLab CI/CD et l’automatisation des déploiements, qualité de code, testing, documentation et supervision.' },
+          { text: 'Planification et suivi des actions DevOps définies dans l’assessment.' },
+          { text: 'Mise en place et amélioration des méthodologies de travail : garantir une meilleure vision pour les développeurs sur les cadrages et le suivi des features et US mises en place.' },
+          { text: 'Évaluation des profils techniques pour le recrutement, avec un accent sur Spring Boot, GitLab CI, Kubernetes et les pratiques Craftsmanship (TDD, Clean Code, SOLID, Design Patterns).' },
+          { text: 'Préparation de formations et d’ateliers Craftsmanship, avec démonstration de bonnes pratiques sur Spring Boot, TDD, et sensibilisation sur les impacts d’un mauvais code (dette technique, maintenabilité, performance, évolutivité).' },
+          { text: 'Revue et refactorisation des codes Selenium à base de design pattern (POM & DDT), mise en place d’un dashboard de suivi des tests automatisés.' },
+        ],
+      },
+      {
+        title: 'Tech Lead',
+        scope: 'Projets internes Intelcia Tech',
+        bullets: [
+          {
+            text: 'POC multi-agents IA sur des projets internes :',
+            children: [
+              'Intégration de LLM dans un workflow métier piloté par une machine à états YAML, avec validations humaines aux points de décision (human-in-the-loop)',
+              'Routage multi-modèles pour maîtriser les coûts, avec un modèle adapté à chaque étape',
+              'Ingénierie de prompts et méthode outillée par étape',
+              'Traçabilité des sorties IA : chaque information sourcée avec un niveau de fiabilité, audit automatique des livrables',
+              'Sécurité : jetons d’accès en mémoire uniquement, repérage des secrets et données personnelles, journal d’audit en ajout seul',
+            ],
+          },
+          {
+            text: 'Conception et pilotage de l’architecture d’une solution interne à base de microservices, dans le cadre de la refonte d’un processus métier critique :',
+            children: [
+              'Élaboration du schéma directeur : cartographie des domaines métier, découpage en contextes bornés (DDD), priorisation des chantiers et trajectoire de migration par lots',
+              'Arbitrages d’architecture formalisés (découpage, cohérence des référentiels, modèle de données par domaine) et présentés en comité de pilotage',
+              'Architecture microservices découpée par domaine métier, chaque service avec son propre schéma de données et un référentiel partagé sans duplication',
+              'Approche contract-first : contrats d’API OpenAPI versionnés comme source de vérité, génération des interfaces côté serveur',
+              'Communication asynchrone par événements (Kafka, patron outbox) pour découpler les services et garantir la cohérence des échanges',
+              'Gouvernance des évolutions : migrations de schéma versionnées (Liquibase), jeux de données de démonstration et procédures de purge sécurisées',
+              'Pilotage du delivery par lots fonctionnels : rétro-planning, points de décision documentés, règles de gestion cadrées avec les métiers et validées par des jeux de tests métier',
+              'Habilitations par périmètre et contrôle d’accès au niveau des services',
+              'Documentation d’architecture et d’exploitation pour la reprise par les équipes',
+            ],
+          },
+        ],
+      },
+    ],
     stack: [
-      { label: 'Back End', items: ['Java 8/11/21', 'Java EE', 'Spring', 'Spring Boot', 'Hibernate/JPA', 'Apache CXF (SOAP/REST)', 'API REST', 'Camunda'] },
-      { label: 'Front End', items: ['JSF', 'RichFaces', 'Seam'] },
+      { label: 'Back End', items: ['Java 8/11/21', 'Java EE', 'Spring', 'Spring Boot', 'Spring Batch', 'Hibernate/JPA', 'Apache CXF (SOAP/REST)', 'API REST', 'Camunda'] },
+      { label: 'Front End', items: ['Angular', 'TypeScript', 'JSF', 'RichFaces', 'Seam', 'HTML', 'CSS', 'Bootstrap'] },
       { label: 'Messaging & stockage', items: ['Kafka', 'RabbitMQ', 'MinIO (GED)', 'MongoDB'] },
-      { label: 'Infra & déploiement', items: ['Docker', 'Kubernetes', 'Helm', 'GitLab CI'] },
+      { label: 'Infra & déploiement', items: ['Docker', 'Kubernetes', 'Helm', 'GitLab CI/CD'] },
       { label: 'Monitoring', items: ['Prometheus', 'Grafana'] },
-      { label: 'Base de données', items: ['Oracle', 'Liquibase'] },
-    ],
-  },
-  {
-    id: 'intelcia-2024',
-    role: 'Tech Lead',
-    company: 'Intelcia Tech',
-    client: 'SFR',
-    period: 'Août 2024 – Juil. 2025',
-    bullets: [
-      { text: 'Conduite d’assessments DevOps pour toutes les activités DOOR, en intégrant les bonnes pratiques sur GitLab CI/CD et l’automatisation des déploiements, qualité de code, testing, documentation et supervision.' },
-      { text: 'Planification et suivi des actions DevOps définies dans l’assessment.' },
-      { text: 'Mise en place et amélioration des méthodologies de travail : garantir une meilleure vision pour les développeurs sur les cadrages et le suivi des features et US mises en place.' },
-      { text: 'Évaluation des profils techniques pour le recrutement, avec un accent sur Spring Boot, GitLab CI, Kubernetes et les pratiques Craftsmanship (TDD, Clean Code, SOLID, Design Patterns).' },
-      { text: 'Préparation de formations et d’ateliers Craftsmanship, avec démonstration de bonnes pratiques sur Spring Boot, TDD, et sensibilisation sur les impacts d’un mauvais code (dette technique, maintenabilité, performance, évolutivité).' },
-      { text: 'Revue et refactorisation des codes Selenium à base de design pattern (POM & DDT), mise en place d’un dashboard de suivi des tests automatisés.' },
-    ],
-    stack: [
-      { label: 'Back End', items: ['Java JEE', 'Spring', 'Hibernate', 'JPA', 'API REST', 'Spring Boot', 'Spring Batch'] },
-      { label: 'Front End', items: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Bootstrap'] },
-      { label: 'Infra & déploiement', items: ['Kubernetes', 'Docker'] },
-      { label: 'Base de données', items: ['MySQL', 'PostgreSQL'] },
-      { label: 'Outils', items: ['Maven', 'GitLab CI/CD', 'Git', 'IntelliJ', 'Jira', 'Sonar'] },
+      { label: 'Base de données', items: ['Oracle', 'MySQL', 'PostgreSQL', 'Liquibase'] },
+      { label: 'Outils', items: ['Maven', 'Git', 'IntelliJ', 'Jira', 'Sonar', 'Selenium'] },
+      { label: 'Architecture', items: ['Microservices', 'DDD', 'OpenAPI (contract-first)', 'Event-driven', 'Kafka', 'Outbox pattern', 'Liquibase'] },
+      { label: 'IA & agents', items: ['LLM', 'Multi-agents', 'RAG', 'Prompt engineering', 'Multi-model routing', 'Human-in-the-loop'] },
+      { label: 'Plateforme IA', items: ['Node.js', 'JavaScript', 'SSE', 'YAML', 'API GitLab', 'API Confluence', 'Mermaid', 'Chromium headless'] },
     ],
   },
   {
@@ -248,11 +287,12 @@ export const SKILLS: SkillCategory[] = [
     label: 'Java / JEE',
     items: ['Spring MVC', 'Spring Boot', 'Spring Security', 'Spring Batch', 'Camunda', 'Hibernate', 'JPA', 'JDBC', 'Web Services', 'Struts', 'JSP', 'JavaFX', 'JUnit'],
   },
-  { id: 'web', label: 'Web', items: ['Angular', 'ReactJS', 'HTML', 'CSS', 'JavaScript', 'jQuery', 'ASP.NET'] },
+  { id: 'ai', label: 'IA', items: ['LLM', 'Multi-agents', 'RAG', 'Prompt engineering', 'Human-in-the-loop'] },
+  { id: 'web', label: 'Web', items: ['Node.js', 'Angular', 'ReactJS', 'HTML', 'CSS', 'JavaScript', 'jQuery', 'ASP.NET'] },
   { id: 'db', label: 'Bases de données', items: ['Oracle', 'MySQL', 'SQL Server', 'PostgreSQL', 'MongoDB'] },
   { id: 'devops', label: 'DevOps & outils', items: ['Git', 'GitLab CI/CD', 'Jenkins', 'Maven', 'SVN', 'Jira', 'Sonar', 'Docker', 'Kubernetes', 'Helm'] },
   { id: 'srv', label: 'Serveurs', items: ['JBoss', 'Tomcat'] },
-  { id: 'design', label: 'Conception', items: ['UML / UP', 'Merise'] },
+  { id: 'design', label: 'Conception', items: ['Microservices', 'DDD', 'Event-driven', 'OpenAPI', 'UML / UP', 'Merise'] },
   { id: 'sys', label: 'Systèmes & IDE', items: ['Linux', 'Windows', 'IntelliJ', 'Eclipse', 'NetBeans', 'Visual Studio'] },
 ];
 
@@ -268,6 +308,8 @@ export interface Profile {
   phone: string;
   phoneHref: string;
   cv: string;
+  linkedin: string;
+  github: string;
   education: { degree: string; field: string; school: string; period: string };
   methods: string[];
 }
@@ -295,6 +337,12 @@ export interface UiStrings {
   current: string;
   client: string;
   techEnv: string;
+  journeyTabsAria: string;
+  journeyHint: string;
+  journeyPrev: string;
+  journeyNext: string;
+  phasePrev: string;
+  phaseNext: string;
   stackEyebrow: string;
   stackTitle: string;
   stackLead: (technologies: number, families: number) => string;
@@ -309,7 +357,6 @@ export interface UiStrings {
   emailLabel: string;
   phoneLabel: string;
   locationLabel: string;
-  builtWith: string;
 }
 
 export interface Content {
@@ -358,6 +405,12 @@ export const FR: Content = {
     current: 'en cours',
     client: 'Client',
     techEnv: 'Environnement technique',
+    journeyTabsAria: 'Expériences',
+    journeyHint: '← → pour changer de branche',
+    journeyPrev: 'Expérience précédente',
+    journeyNext: 'Expérience suivante',
+    phasePrev: 'Phase précédente',
+    phaseNext: 'Phase suivante',
     stackEyebrow: '04 / STACK',
     stackTitle: 'Une stack éprouvée en production.',
     stackLead: (t, f) => `${t} technologies, ${f} familles — du langage à l’orchestration.`,
@@ -372,6 +425,5 @@ export const FR: Content = {
     emailLabel: 'E-MAIL',
     phoneLabel: 'TÉLÉPHONE',
     locationLabel: 'LOCALISATION',
-    builtWith: 'Conçu avec Angular',
   },
 };

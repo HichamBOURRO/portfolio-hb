@@ -1,10 +1,11 @@
 // src/app/data/profile.en.ts
-import { Bullet, Content, EXPERIENCES, PROFILE, SKILLS } from './profile';
+import { Bullet, Content, EXPERIENCES, PROFILE, SKILLS, SubPhase } from './profile';
 
 interface ExperienceEn {
   role: string;
   period: string;
   bullets: Bullet[];
+  subs?: SubPhase[];
 }
 
 const STACK_LABELS: Record<string, string> = {
@@ -12,11 +13,14 @@ const STACK_LABELS: Record<string, string> = {
   'Infra & déploiement': 'Infra & deployment',
   'Base de données': 'Database',
   Outils: 'Tools',
+  'IA & agents': 'AI & agents',
+  'Plateforme IA': 'AI platform',
 };
 
 const SKILL_LABELS: Record<string, string> = {
   lang: 'Languages',
   jee: 'Java / JEE',
+  ai: 'AI',
   web: 'Web',
   db: 'Databases',
   devops: 'DevOps & tooling',
@@ -26,9 +30,9 @@ const SKILL_LABELS: Record<string, string> = {
 };
 
 const EXPERIENCES_EN: Record<string, ExperienceEn> = {
-  'intelcia-2025': {
+  intelcia: {
     role: 'Tech Lead',
-    period: 'Dec 2025 – Present',
+    period: 'Aug 2024 – Present',
     bullets: [
       { text: 'Corrective and evolutionary maintenance of a critical FTTH information system made up of several applications.' },
       { text: 'Design and development of bulk document extraction, with ZIP generation, export tracking, download and a monitoring UI.' },
@@ -46,17 +50,49 @@ const EXPERIENCES_EN: Record<string, ExperienceEn> = {
       { text: 'Application portability study.' },
       { text: 'Code review, richer logging and observability, versioning of hotfixes.' },
     ],
-  },
-  'intelcia-2024': {
-    role: 'Tech Lead',
-    period: 'Aug 2024 – Jul 2025',
-    bullets: [
-      { text: 'Led DevOps assessments across all DOOR activities, covering GitLab CI/CD best practices, deployment automation, code quality, testing, documentation and monitoring.' },
-      { text: 'Planned and tracked the DevOps actions defined in the assessment.' },
-      { text: 'Set up and improved working methods, giving developers clearer visibility on scoping and on the follow-up of features and user stories.' },
-      { text: 'Assessed technical candidates for recruitment, with a focus on Spring Boot, GitLab CI, Kubernetes and Craftsmanship practices (TDD, Clean Code, SOLID, Design Patterns).' },
-      { text: 'Prepared Craftsmanship training sessions and workshops, demonstrating best practices on Spring Boot and TDD, and raising awareness of the impact of poor code (technical debt, maintainability, performance, scalability).' },
-      { text: 'Reviewed and refactored Selenium code using design patterns (POM & DDT), and set up a dashboard to track automated tests.' },
+    subs: [
+      {
+        title: 'Cross-team Tech Lead',
+        client: 'SFR',
+        bullets: [
+          { text: 'Led DevOps assessments across all DOOR activities, covering GitLab CI/CD best practices, deployment automation, code quality, testing, documentation and monitoring.' },
+          { text: 'Planned and tracked the DevOps actions defined in the assessment.' },
+          { text: 'Set up and improved working methods, giving developers clearer visibility on scoping and on the follow-up of features and user stories.' },
+          { text: 'Assessed technical candidates for recruitment, with a focus on Spring Boot, GitLab CI, Kubernetes and Craftsmanship practices (TDD, Clean Code, SOLID, Design Patterns).' },
+          { text: 'Prepared Craftsmanship training sessions and workshops, demonstrating best practices on Spring Boot and TDD, and raising awareness of the impact of poor code (technical debt, maintainability, performance, scalability).' },
+          { text: 'Reviewed and refactored Selenium code using design patterns (POM & DDT), and set up a dashboard to track automated tests.' },
+        ],
+      },
+      {
+        title: 'Tech Lead',
+        scope: 'Intelcia Tech internal projects',
+        bullets: [
+          {
+            text: 'Multi-agent AI POCs for internal projects:',
+            children: [
+              'LLMs integrated into a business workflow driven by a YAML state machine, with human approval at decision points (human-in-the-loop)',
+              'Multi-model routing to keep costs under control, with the right model for each step',
+              'Prompt engineering and a tooled, step-by-step method',
+              'Traceable AI output: every fact sourced with a reliability level, automatic audit of deliverables',
+              'Security: access tokens kept in memory only, detection of secrets and personal data, append-only audit log',
+            ],
+          },
+          {
+            text: 'Designed and led the architecture of an internal microservices-based solution, as part of the redesign of a critical business process:',
+            children: [
+              'Built the IT master plan: business domain mapping, bounded contexts (DDD), prioritisation of workstreams and a phased migration roadmap',
+              'Documented architecture decisions (service boundaries, reference data consistency, per-domain data model) and presented them to the steering committee',
+              'Microservices split by business domain, each service owning its data schema, with shared reference data and no duplication',
+              'Contract-first approach: versioned OpenAPI contracts as the source of truth, with server-side interfaces generated from them',
+              'Asynchronous event-driven communication (Kafka, outbox pattern) to decouple services and keep exchanges consistent',
+              'Change governance: versioned schema migrations (Liquibase), demo datasets and secure purge procedures',
+              'Delivery managed in functional increments: backward planning, documented decision points, business rules defined with business teams and validated through business test cases',
+              'Scope-based permissions and service-level access control',
+              'Architecture and operations documentation for handover to the teams',
+            ],
+          },
+        ],
+      },
     ],
   },
   sofrecom: {
@@ -190,6 +226,12 @@ export const EN: Content = {
     current: 'current',
     client: 'Client',
     techEnv: 'Technical environment',
+    journeyTabsAria: 'Experiences',
+    journeyHint: '← → to switch branch',
+    journeyPrev: 'Previous experience',
+    journeyNext: 'Next experience',
+    phasePrev: 'Previous phase',
+    phaseNext: 'Next phase',
     stackEyebrow: '04 / STACK',
     stackTitle: 'A production-proven stack.',
     stackLead: (t, f) => `${t} technologies, ${f} families — from language to orchestration.`,
@@ -204,6 +246,5 @@ export const EN: Content = {
     emailLabel: 'E-MAIL',
     phoneLabel: 'PHONE',
     locationLabel: 'LOCATION',
-    builtWith: 'Built with Angular',
   },
 };
